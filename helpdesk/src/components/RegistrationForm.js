@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import NavLogin from './navLogin';
 
-const RegistrationForm = () => {
+const RegistrationForm = (props) => {
   const [formState, setFormState] = useState({
     username: "",
     password: "",
@@ -24,6 +25,7 @@ const RegistrationForm = () => {
 
   return (
     <>
+      <NavLogin info={props}/>
       <form onSubmit={onSubmit}>
         <h2>Registeration Form</h2>
 

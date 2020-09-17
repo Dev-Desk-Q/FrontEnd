@@ -1,6 +1,7 @@
 import React from "react";
+import NavLogin from './navLogin';
 
-const TicketList = () => {
+const TicketList = (props) => {
   const dummyData = [
     { title: "Testing Title 1", description: "testing description 1" },
     { title: "Testing Title 2", description: "testing description 2" },
@@ -9,6 +10,7 @@ const TicketList = () => {
   ];
   return (
     <>
+      <NavLogin info={props}/>
       {dummyData.map(({ title, description }, index) => (
         <article key={index}>
           <header>

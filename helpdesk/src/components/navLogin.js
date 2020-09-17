@@ -17,6 +17,7 @@ const NavLogin = props => {
     const submitLogin = e => {
         e.preventDefault();
         props.userLogin(activeUser);
+        props.info.history.push('/protected');
     }
 
     if ( props.loginTrue === false) {

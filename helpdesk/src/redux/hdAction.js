@@ -3,9 +3,9 @@ import axios from 'axios';
 
 export const userLogin = (user) => dispatch => {
     dispatch({type: 'USER_LOGIN'});
-    axios.post('https://areallyuniquename.herokuapp.com/api/users')
+    axios.post('https://areallyuniquename.herokuapp.com/api/users/login',user)
     .then(res => {
-        dispatch({type: 'LOGIN_SUCCSESS'});
+        dispatch({type: 'LOGIN_SUCCSESS', payload: res.data});
         localStorage.setItem('token', res.data.payload);
     })
     .catch(er => {

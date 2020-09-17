@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {userLogin} from '../redux/hdAction';
-import './navLog.css';
+import './navLogin.css';
 import {Button} from 'reactstrap';
 
 //https://areallyuniquename.herokuapp.com/api/users

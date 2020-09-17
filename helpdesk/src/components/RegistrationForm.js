@@ -3,8 +3,8 @@ import React, { useState } from "react";
 const RegistrationForm = () => {
   const [formState, setFormState] = useState({
     username: "",
-    email: "",
     password: "",
+    role: "",
   });
 
   const onChange = (e) => {
@@ -33,14 +33,20 @@ const RegistrationForm = () => {
           <input onChange={onChange} name="username" type="text" />
         </div>
         <div className="form-group">
-          <label htmlFor="email">Email</label>
-          <br />
-          <input onChange={onChange} name="email" type="email" />
-        </div>
-        <div className="form-group">
           <label htmlFor="password">Password</label>
           <br />
           <input onChange={onChange} name="password" type="password" />
+        </div>
+        <div className="form-group">
+          <label htmlFor="role">Role</label>
+          <br />
+          <select onChange={onChange} name="role">
+            <option disabled={formState.role === "" ? false : true} value="">
+              -- Select a Role --
+            </option>
+            <option value="student">Student</option>
+            <option value="helper">Helper</option>
+          </select>
         </div>
         <input type="submit" value="Register" />
       </form>

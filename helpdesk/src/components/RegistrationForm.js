@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import NavLogin from './navLogin';
+import { connect } from 'react-redux';
+import { regUser } from '../redux/hdAction'
 
 const RegistrationForm = (props) => {
   const [formState, setFormState] = useState({
@@ -19,10 +21,9 @@ const RegistrationForm = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-
-    console.log(formState);
+    props.regUser(formState);
   };
-
+  if (props.newUser === null){
   return (
     <>
       <NavLogin info={props}/>
@@ -53,7 +54,22 @@ const RegistrationForm = (props) => {
         <input type="submit" value="Register" />
       </form>
     </>
-  );
+  );}
+  else {
+    return(
+      <div>
+        <p> Please log in {props.newUser}</p>
+      </div>
+    )
+  }
 };
 
-export default RegistrationForm;
+const stp = state => {
+  return {
+      newUser: state.registered,
+  }
+}
+
+const dtp = { regUser }
+
+export default connect(stp,dtp)(RegistrationForm);

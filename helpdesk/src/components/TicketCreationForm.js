@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 
-const TicketCreationForm = () => {
+import { Form, Input, Label, FormGroup } from 'reactstrap'
+import NavLogin from "./navLogin";
+
+const TicketCreationForm = (props) => {
   const [formState, setFormState] = useState({
     title: "",
     description: "",
@@ -26,22 +29,22 @@ const TicketCreationForm = () => {
 
   return (
     <>
-      <form onSubmit={onSubmit}>
-        <h2>Ticket Creation</h2>
+      <NavLogin props={props} />
+      <Form onSubmit={onSubmit}>
+        <h3>Ticket Creation</h3>
 
-        <div className="form-group">
-          <label htmlFor="title">Title</label>
+        <FormGroup className="form-group">
+          <Label htmlFor="title">Title</Label>
           <br />
-          <input onChange={onChange} name="title" type="text" />
-        </div>
-        <div className="form-group">
-          <label htmlFor="description">Description</label>
+          <Input onChange={onChange} name="title" type="text" />
+        </FormGroup>
+        <FormGroup className="form-group">
+          <Label htmlFor="description">Description</Label>
           <br />
-          <textarea onChange={onChange} name="description"></textarea>
-        </div>
-
-        <input type="submit" value="Post Ticket" />
-      </form>
+          <Input type="textarea" onChange={onChange} name="description"></Input>
+        </FormGroup>
+        <Input type="submit" value="Post Ticket" />
+      </Form>
     </>
   );
 };

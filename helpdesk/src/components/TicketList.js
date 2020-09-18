@@ -9,7 +9,7 @@ const TicketList = (props) => {
       description: "Testing Description 1",
       category: "Testing Category",
       completed: false,
-      asssigned: "Testing Student",
+      assigned: "Testing Student",
       assignedUser: "Testing Helper",
     },
     {
@@ -17,7 +17,7 @@ const TicketList = (props) => {
       description: "Testing Description 2",
       category: "Testing Category 2",
       completed: true,
-      asssigned: "Testing Student",
+      assigned: "Testing Student",
       assignedUser: "Testing Helper",
     },
     {
@@ -25,7 +25,7 @@ const TicketList = (props) => {
       description: "Testing Description 3",
       category: "Testing Category 3",
       completed: false,
-      asssigned: "Testing Student",
+      assigned: "Testing Student",
       assignedUser: "Testing Helper",
     },
   ];

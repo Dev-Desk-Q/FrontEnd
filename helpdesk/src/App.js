@@ -15,6 +15,7 @@ function App() {
     <Switch>
       <Route exact path='/' component={RegistrationForm}/>
       <ProtectedRoute exact path='/protected' component={TicketList} />
+      <Route exact path='/newTicket' component={TicketCreationForm} />
     </Switch>
   </div>);
 }

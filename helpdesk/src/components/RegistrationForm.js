@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import NavLogin from './navLogin';
 
+import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap'
+
+
 const RegistrationForm = (props) => {
   const [formState, setFormState] = useState({
     username: "",
@@ -26,32 +29,33 @@ const RegistrationForm = (props) => {
   return (
     <>
       <NavLogin info={props}/>
-      <form onSubmit={onSubmit}>
+      <Form onSubmit={onSubmit}>
         <h2>Registeration Form</h2>
 
-        <div className="form-group">
-          <label htmlFor="username">Username</label>
+        <FormGroup className="form-group">
+          <Label htmlFor="username">Username</Label>
           <br />
-          <input onChange={onChange} name="username" type="text" />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
+          <Input onChange={onChange} name="username" type="text" />
+        </FormGroup>
+        <FormGroup className="form-group">
+          <Label htmlFor="password">Password</Label>
           <br />
-          <input onChange={onChange} name="password" type="password" />
-        </div>
-        <div className="form-group">
-          <label htmlFor="role">Role</label>
+          <Input onChange={onChange} name="password" type="password" />
+          <br/>
+        </FormGroup>
+        <FormGroup className="form-group">
+          <Label htmlFor="role">Role</Label>
           <br />
-          <select onChange={onChange} name="role">
+          <Input type="select" onChange={onChange} name="role">
             <option disabled={formState.role === "" ? false : true} value="">
               -- Select a Role --
             </option>
             <option value="student">Student</option>
             <option value="helper">Helper</option>
-          </select>
-        </div>
-        <input type="submit" value="Register" />
-      </form>
+          </Input>
+        </FormGroup>
+        <Input type="submit" value="Register" />
+      </Form>
     </>
   );
 };

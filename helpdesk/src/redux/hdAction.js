@@ -13,3 +13,14 @@ export const userLogin = (user) => dispatch => {
     })
 
 }
+
+
+export const regUser = (newUser) => dispatch => {
+   axios.post('',newUser)
+   .then(res => {
+    dispatch({type: 'CREATE_USER', payload: newUser.username})
+   })
+   .catch(er => {
+       console.log(er);
+   });
+}

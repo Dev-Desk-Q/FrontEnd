@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import NavLogin from './navLogin';
+import { connect } from 'react-redux';
+import { regUser } from '../redux/hdAction'
 
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap'
 
@@ -22,10 +24,9 @@ const RegistrationForm = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-
-    console.log(formState);
+    props.regUser(formState);
   };
-
+  if (props.newUser === null){
   return (
     <>
       <NavLogin info={props}/>
@@ -57,7 +58,22 @@ const RegistrationForm = (props) => {
         <Input type="submit" value="Register" />
       </Form>
     </>
-  );
+  );}
+  else {
+    return(
+      <div>
+        <p> Please log in {props.newUser}</p>
+      </div>
+    )
+  }
 };
 
-export default RegistrationForm;
+const stp = state => {
+  return {
+      newUser: state.registered,
+  }
+}
+
+const dtp = { regUser }
+
+export default connect(stp,dtp)(RegistrationForm);

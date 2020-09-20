@@ -24,6 +24,14 @@ const RegistrationForm = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+
+    const { password, confirmPassword } = formState;
+
+    // Password Validation
+    if (password !== confirmPassword) {
+      alert("Passwords must match!");
+      return null;
+    }
     props.regUser(formState);
   };
 

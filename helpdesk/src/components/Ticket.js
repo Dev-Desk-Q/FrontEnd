@@ -1,19 +1,30 @@
 import React from "react";
 
-const Ticket = () => {
-  const dummyData = {
-    title: "Testing Title",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, eligendi officia eos nobis recusandae earum praesentium odit nemo explicabo autem!",
-  };
+const Ticket = ({ticket}) => {
+
+  const {
+    title,
+    description,
+    category,
+    completed,
+    assigned,
+    assignedUser,
+  } = ticket;
+
   return (
     <article>
       <header>
-        <h2>{dummyData.title}</h2>
+        <h3>{title}</h3>
       </header>
       <main>
-        <p>{dummyData.description}</p>
+        <p>{description}</p>
       </main>
+      <footer>
+        <p>Completed: {`${completed}`}</p>
+        <p>Assigned: {assigned}</p>
+        <p>Assigned To: {assignedUser}</p>
+        <span><strong>Category</strong>: {category}</span>
+      </footer>
     </article>
   );
 };

@@ -37,8 +37,9 @@ const TicketList = (props) => {
   useEffect(e => {
     axiosWithAuth().get('/tickets')
     .then(res => {
-      props.setTickets(res);
       console.log(res);
+      props.setTickets(res);
+      
     })
     .catch(er => {
       console.log(er);

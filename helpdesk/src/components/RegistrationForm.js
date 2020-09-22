@@ -115,5 +115,4 @@ const stp = (state) => {
 };
 
 const dtp = { };
-
 export default connect(stp, dtp)(RegistrationForm);

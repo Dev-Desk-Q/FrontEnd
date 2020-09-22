@@ -8,24 +8,18 @@ const Ticket = ({ticket}) => {
     category,
     completed,
     assigned,
-    assignedUser,
+    assigned_to,
   } = ticket;
 
   return (
-    <article>
+    <section>
       <header>
         <h3>{title}</h3>
       </header>
-      <main>
-        <p>{description}</p>
-      </main>
-      <footer>
-        <p>Completed: {`${completed}`}</p>
-        <p>Assigned: {assigned}</p>
-        <p>Assigned To: {assignedUser}</p>
-        <span><strong>Category</strong>: {category}</span>
-      </footer>
-    </article>
+      <div>
+      <p>user:{assigned} - helper:{assigned_to}</p>
+      </div>
+    </section>
   );
 };
 

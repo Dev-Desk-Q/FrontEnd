@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 
-import { Form, Input, Label, FormGroup } from 'reactstrap'
+import { Form, Input, Label, FormGroup } from "reactstrap";
 import NavLogin from "./navLogin";
 
 const TicketCreationForm = (props) => {
   const [formState, setFormState] = useState({
     title: "",
     description: "",
+    tried: "",
+    category: "",
   });
 
   const onSubmit = (e) => {
@@ -41,7 +43,33 @@ const TicketCreationForm = (props) => {
         <FormGroup className="form-group">
           <Label htmlFor="description">Description</Label>
           <br />
-          <Input type="textarea" onChange={onChange} name="description"></Input>
+          <Input
+            rows="4"
+            cols="50"
+            type="textarea"
+            onChange={onChange}
+            name="description"
+          />
+        </FormGroup>
+        <FormGroup>
+          <Label htmlFor="tried">What has been tried</Label>
+          <br />
+          <Input
+            onChange={onChange}
+            rows="4"
+            cols="50"
+            type="textarea"
+            name="tried"
+          />
+        </FormGroup>
+        <FormGroup>
+          <Label htmlFor="category">Category</Label>
+          <br />
+          <Input onChange={onChange} type="select" name="category">
+            <option value="option1">option1</option>
+            <option value="option2">option2</option>
+            <option value="option3">option3</option>
+          </Input>
         </FormGroup>
         <Input type="submit" value="Post Ticket" />
       </Form>

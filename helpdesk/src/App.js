@@ -5,7 +5,6 @@ import TicketCreationForm from "./components/TicketCreationForm";
 import RegistrationForm from "./components/RegistrationForm";
 import {Switch, Route} from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute';
-import TicketCreationForm from './components/TicketCreationForm';
 
 function App() {
 

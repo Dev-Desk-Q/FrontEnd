@@ -1,9 +1,6 @@
-
-import React from "react";
 import NavLogin from "./navLogin";
 import Ticket from "../components/Ticket";
 import React, { useEffect } from "react";
-import NavLogin from './navLogin';
 import {axiosWithAuth} from '../utils/axiosAuth';
 import {connect} from 'react-redux';
 import {setTickets} from '../redux/hdAction';

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import NavLogin from './navLogin';
 import { Form, Input, Label, FormGroup } from "reactstrap";
-import NavLogin from "./navLogin";
 
 const TicketCreationForm = (props) => {
   const [formState, setFormState] = useState({

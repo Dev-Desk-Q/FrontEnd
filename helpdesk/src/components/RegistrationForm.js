@@ -1,10 +1,7 @@
 import React, { useState } from "react";
-import NavLogin from "./navLogin";
 import { connect } from "react-redux";
-import { regUser } from "../redux/hdAction";
 import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
 import NavLogin from './navLogin';
-import { connect } from 'react-redux';
 import axios from 'axios';
 
 const RegistrationForm = (props) => {
@@ -32,8 +29,7 @@ const RegistrationForm = (props) => {
       alert("Passwords must match!");
       return null;
     }
-    props.regUser(formState);
-  };
+    
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -46,6 +42,7 @@ const RegistrationForm = (props) => {
     console.log('did not work');
        console.log(er);
    });
+   props.regUser(formState);
   };
   
   if (regTrue === false) {return (
@@ -117,6 +114,6 @@ const stp = (state) => {
   };
 };
 
-const dtp = { regUser };
+const dtp = { };
 
 export default connect(stp, dtp)(RegistrationForm);

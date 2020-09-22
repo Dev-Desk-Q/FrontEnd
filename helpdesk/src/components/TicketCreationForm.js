@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import NavLogin from './navLogin';
+import { connect } from 'react-redux';
 import { Form, Input, Label, FormGroup } from "reactstrap";
 
 const TicketCreationForm = (props) => {
@@ -75,4 +76,12 @@ const TicketCreationForm = (props) => {
   );
 };
 
-export default TicketCreationForm;
+const stp = state => {
+  return {
+      username: state.username
+  }
+}
+
+const dtp = { }
+
+export default connect(stp,dtp)(TicketCreationForm);

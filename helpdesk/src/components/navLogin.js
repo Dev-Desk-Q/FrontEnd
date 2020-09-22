@@ -19,7 +19,7 @@ const NavLogin = props => {
 
         axios.post('https://areallyuniquename.herokuapp.com/api/users/login', activeUser)
         .then(res => {
-            props.loginUser(res)
+            props.loginUser(res,activeUser.username)
             localStorage.setItem('token', res.data.token);
             props.info.history.push('/protected');
         })
@@ -40,8 +40,8 @@ const NavLogin = props => {
         <div className='navLogin'>
             <h2 className= 'navHelp'>HelpDesk</h2>
             <nav>
-                <Link to='/Home'>Home</Link>
-                <Link to='/Aboutus'>About us</Link>
+                <a href='https://jovial-yonath-73daa5.netlify.app'>home</a>
+                <a href='https://jovial-yonath-73daa5.netlify.app/about.html'>our team</a>
             </nav>
             <form onSubmit={submitLogin}>
                 <input type='text' name='username' placeholder='Username' onChange={handleChange}/>
@@ -55,7 +55,7 @@ const NavLogin = props => {
             <div className='navLogin'>
                 <h2>HelpDesk</h2>
                 <nav>
-                    <Link to='/Home'>Home</Link>
+                    <Link to='https://jovial-yonath-73daa5.netlify.app'>Home</Link>
                     <Link to='/Aboutus'>About us</Link>
                     <Link to='/protected'>View Tickets</Link>
                     <Link to='/protected/submittickets'>New Ticket</Link>

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import NavLogin from './navLogin';
+import { connect } from 'react-redux';
 import { Form, Input, Label, FormGroup } from "reactstrap";
+import { axiosWithAuth } from '../utils/axiosAuth';
 
 const TicketCreationForm = (props) => {
   const [formState, setFormState] = useState({
@@ -12,7 +14,13 @@ const TicketCreationForm = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-
+    axiosWithAuth().post('/tickets', formState)
+    .then(res => {
+      alert('ticket submited');
+    })
+    .catch(er => {
+      console.log(er);
+    })
     console.log(formState);
   };
 
@@ -75,4 +83,12 @@ const TicketCreationForm = (props) => {
   );
 };
 
-export default TicketCreationForm;
+const stp = state => {
+  return {
+      username: state.username
+  }
+}
+
+const dtp = { }
+
+export default connect(stp,dtp)(TicketCreationForm);

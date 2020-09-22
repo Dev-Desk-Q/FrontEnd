@@ -1,0 +1,42 @@
+.ticket-cont {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.tickets {
+    display: flex;
+    flex-flow: column-reverse;
+    width: 25%;
+    justify-content: space-evenly;
+    height: 100vh;
+}
+.selectedTicket {
+    width: 35%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    color: white;
+    height: 100vh;
+}
+
+.highlight {
+    color: #ff952b;
+}
+.tick {
+    background: #ff952b;
+    line-height: 0%;
+}
+
+.tick:hover {
+    
+    filter: brightness(50%);
+}
+
+.refresh {
+    position: relative;
+    top: -73%;
+    left:-45%;
+    width: 25%;
+}

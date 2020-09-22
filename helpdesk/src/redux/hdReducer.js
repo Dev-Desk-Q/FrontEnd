@@ -1,19 +1,30 @@
 const initialState = {
-    data: {},
+    data: [],
     message: '',
+    username: '',
     login: false,
     userType: '',
+    selected: {
+        title: null,
+        description: '',
+        category: '',
+        completed: false,
+        assigned: '',
+        assignedUser: '',
+      },
+    role: 'student',
 }
 
 export const hdReducer = (state = initialState, action) => {
     switch(action.type){
         case 'USER_LOGIN':
-            return {...state, message: action.payload, login: true};
+            return {...state, message: action.payload.message, role: action.payload.role, username: action.payload.username, login: true};
         case 'USER_LOGOUT':
                 return {...state, message: null, login: false, userType: ''};
         case 'GET-TICKETS':
-            console.log(action.payload);
             return {...state, data: action.payload};
+        case 'SELECT-TICKET':
+            return {...state, selected: action.payload}
         default:
             return state;
 

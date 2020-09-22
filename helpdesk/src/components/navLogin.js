@@ -19,7 +19,7 @@ const NavLogin = props => {
 
         axios.post('https://areallyuniquename.herokuapp.com/api/users/login', activeUser)
         .then(res => {
-            props.loginUser(res)
+            props.loginUser(res,activeUser.username)
             localStorage.setItem('token', res.data.token);
             props.info.history.push('/protected');
         })
@@ -40,12 +40,13 @@ const NavLogin = props => {
         <div className='navLogin'>
             <h2 className= 'navHelp'>HelpDesk</h2>
             <nav>
-                <Link to='/Home'>Home</Link>
-                <Link to='/Aboutus'>About us</Link>
+                <a href='https://jovial-yonath-73daa5.netlify.app'>Home</a>
+                <a href='https://jovial-yonath-73daa5.netlify.app/about.html'>Our Team</a>
+                <a href='https://jovial-yonath-73daa5.netlify.app/contact.html'>Contact Us</a>
             </nav>
             <form onSubmit={submitLogin}>
                 <input type='text' name='username' placeholder='Username' onChange={handleChange}/>
-                <input type='text' name='password' placeholder='Password' onChange={handleChange}/>
+                <input type='password' name='password' placeholder='Password' onChange={handleChange}/>
                 <Button color="secondary">Login</Button>{' '}
             </form>
         </div>
@@ -55,8 +56,9 @@ const NavLogin = props => {
             <div className='navLogin'>
                 <h2>HelpDesk</h2>
                 <nav>
-                    <Link to='/Home'>Home</Link>
-                    <Link to='/Aboutus'>About us</Link>
+                    <a href='https://jovial-yonath-73daa5.netlify.app'>Home</a>
+                    <a href='https://jovial-yonath-73daa5.netlify.app/about.html'>Our Team</a>
+                    <a href='https://jovial-yonath-73daa5.netlify.app/contact.html'>Contact Us</a>
                     <Link to='/protected'>View Tickets</Link>
                     <Link to='/protected/submittickets'>New Ticket</Link>
                 </nav>

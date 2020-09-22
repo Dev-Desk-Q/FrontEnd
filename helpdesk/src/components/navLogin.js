@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import {userLogin} from '../redux/hdAction';
 import './navLogin.css';
 import {Button} from 'reactstrap';
-
-//https://areallyuniquename.herokuapp.com/api/users
+import axios from 'axios';
+import {loginUser, logoutUser } from '../redux/hdAction';
  
 const NavLogin = props => {
+
     const [activeUser, setActiveUser] = useState({username: '', password: ''});
 
     const handleChange = e => {
@@ -16,17 +16,32 @@ const NavLogin = props => {
        
     const submitLogin = e => {
         e.preventDefault();
-        props.userLogin(activeUser);
-        props.info.history.push('/protected');
+
+        axios.post('https://areallyuniquename.herokuapp.com/api/users/login', activeUser)
+        .then(res => {
+            props.loginUser(res)
+            localStorage.setItem('token', res.data.token);
+            props.info.history.push('/protected');
+        })
+        .catch(er => {
+        
+            console.log(er, activeUser);
+        });
     }
 
-    if ( props.loginTrue === false) {
-    return(
+    const lOut = e => {
+        localStorage.clear('token');
+        props.logoutUser();
+        props.info.history.push('/');
+    }
+
+
+    if (props.login === false) {return(
         <div className='navLogin'>
-            <h2>HelpDesk</h2>
+            <h2 className= 'navHelp'>HelpDesk</h2>
             <nav>
-                <Link to='/tickets'>View Tickets</Link>
-                <Link to='/newTicket'>New Ticket</Link>
+                <Link to='/Home'>Home</Link>
+                <Link to='/Aboutus'>About us</Link>
             </nav>
             <form onSubmit={submitLogin}>
                 <input type='text' name='username' placeholder='Username' onChange={handleChange}/>
@@ -35,27 +50,30 @@ const NavLogin = props => {
             </form>
         </div>
     );}
-    else {
-        return (
+    else if (props.login === true){
+        return(
             <div className='navLogin'>
                 <h2>HelpDesk</h2>
                 <nav>
-                    <Link to='/tickets'>View Tickets</Link>
-                    <Link to='/newTicket'>New Ticket</Link>
+                    <Link to='/Home'>Home</Link>
+                    <Link to='/Aboutus'>About us</Link>
+                    <Link to='/protected'>View Tickets</Link>
+                    <Link to='/protected/submittickets'>New Ticket</Link>
                 </nav>
-                <h3>Welcome Placeholder</h3>
+            <h3>{props.message}</h3>
+            <button onClick={lOut}>Logout</button>
             </div>
-        )
+        );
     }
 }
 
 const stp = state => {
     return {
-        user: state.user,
-        loginTrue: state.loginTrue,
+        message: state.message,
+        login: state.login
     }
 }
 
-const dtp = {userLogin}
+const dtp = {loginUser,logoutUser}
 
 export default connect(stp,dtp)(NavLogin);

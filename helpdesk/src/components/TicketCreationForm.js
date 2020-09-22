@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import NavLogin from './navLogin';
 import { Form, Input, Label, FormGroup } from "reactstrap";
 import NavLogin from "./navLogin";
 
@@ -34,7 +34,6 @@ const TicketCreationForm = (props) => {
       <NavLogin props={props} />
       <Form onSubmit={onSubmit}>
         <h3>Ticket Creation</h3>
-
         <FormGroup className="form-group">
           <Label htmlFor="title">Title</Label>
           <br />

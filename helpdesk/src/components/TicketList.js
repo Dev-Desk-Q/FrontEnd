@@ -56,7 +56,6 @@ const TicketList = (props) => {
       .then(res => {
         console.log(res);
         props.setTickets(res);
-      
       })
       .catch(er => {
         console.log(er);

@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import NavLogin from './navLogin';
+import {axiosWithAuth} from '../utils/axiosAuth';
+import {connect} from 'react-redux';
+import {setTickets} from '../redux/hdAction';
 
 const TicketList = (props) => {
   const dummyData = [
@@ -8,6 +11,18 @@ const TicketList = (props) => {
     { title: "Testing Title 3", description: "testing description 3" },
     { title: "Testing Title 4", description: "testing description 4" },
   ];
+
+  useEffect(e => {
+    axiosWithAuth().get('/tickets')
+    .then(res => {
+      props.setTickets(res);
+      console.log(res);
+    })
+    .catch(er => {
+      console.log(er);
+    });
+  });
+
   return (
     <>
       <NavLogin info={props}/>
@@ -25,4 +40,13 @@ const TicketList = (props) => {
   );
 };
 
-export default TicketList;
+const stp = state => {
+  return {
+      message: state.message,
+      login: state.login
+  }
+}
+
+const dtp = {setTickets}
+
+export default connect(stp,dtp)(TicketList);

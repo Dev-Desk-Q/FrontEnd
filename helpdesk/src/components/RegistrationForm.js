@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import NavLogin from './navLogin';
 import { connect } from 'react-redux';
-import { regUser } from '../redux/hdAction'
+import axios from 'axios';
 
 const RegistrationForm = (props) => {
+  const [regTrue, setRegTrue] = useState(false);
   const [formState, setFormState] = useState({
     username: "",
     password: "",
@@ -21,10 +22,18 @@ const RegistrationForm = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    props.regUser(formState);
+    axios.post('https://areallyuniquename.herokuapp.com/api/users/register', formState)
+   .then(res => {
+    console.log('worked');
+    setRegTrue(!regTrue);
+   })
+   .catch(er => {
+    console.log('did not work');
+       console.log(er);
+   });
   };
-  if (props.newUser === null){
-  return (
+  
+  if (regTrue === false) {return (
     <>
       <NavLogin info={props}/>
       <form onSubmit={onSubmit}>
@@ -55,12 +64,16 @@ const RegistrationForm = (props) => {
       </form>
     </>
   );}
+
   else {
-    return(
+    return (
+      <>
+      <NavLogin info={props}/>
       <div>
-        <p> Please log in {props.newUser}</p>
+        <h3> Please login </h3>
       </div>
-    )
+      </>
+    );
   }
 };
 
@@ -70,6 +83,6 @@ const stp = state => {
   }
 }
 
-const dtp = { regUser }
+const dtp = { }
 
 export default connect(stp,dtp)(RegistrationForm);

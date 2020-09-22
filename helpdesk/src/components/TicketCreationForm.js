@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import NavLogin from './navLogin';
 
-const TicketCreationForm = () => {
+const TicketCreationForm = (props) => {
   const [formState, setFormState] = useState({
     title: "",
     description: "",
@@ -26,6 +27,7 @@ const TicketCreationForm = () => {
 
   return (
     <>
+      <NavLogin info={props}/>
       <form onSubmit={onSubmit}>
         <h2>Ticket Creation</h2>
 

@@ -9,6 +9,8 @@ import {hdReducer} from './redux/hdReducer';
 import thunk from 'redux-thunk';
 import {BrowserRouter as Router} from 'react-router-dom'
 
+import "bootstrap/dist/css/bootstrap.min.css"
+
 const store = createStore(hdReducer, applyMiddleware(thunk));
 
 ReactDOM.render(

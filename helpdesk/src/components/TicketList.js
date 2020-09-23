@@ -10,36 +10,6 @@ import ActiveTicket from './selectedTicket';
 
 const TicketList = (props) => {
   const [update, setUpdate] = useState(false);
-  const testres = {
-    data: [
-    { 
-      id: 1,
-      title: "Title 1 from student",
-      description: "Testing Description 1",
-      category: "Testing Category",
-      completed: false,
-      assigned: "Testing Student",
-      assigned_to: "Testing Helper",
-    },
-    {
-      id: 2,
-      title: "Title 2 from student",
-      description: "Testing Description 2",
-      category: "Testing Category 2",
-      completed: true,
-      assigned: "Testing Student",
-      assigned_to: "Testing Helper",
-    },
-    {
-      id: 3,
-      title: "Title 3 from student",
-      description: "Testing Description 3",
-      category: "Testing Category 3",
-      completed: false,
-      assigned: "Testing Student",
-      assigned_to: "Testing Helper",
-    },
-  ]}
 
  
   useEffect(e => {
@@ -48,15 +18,20 @@ const TicketList = (props) => {
       axiosWithAuth().get('/tickets')
       .then(res => {
         props.setTickets(res);
-        console.log(res);
       })
       .catch(er => {
         console.log(er);
       });
     }
     else {
-      props.setTickets(testres);}
-    },[update]
+      axiosWithAuth().get(`/tickets/users/${props.user_id}`);
+      .then(res => {
+        props.setTickets(res);
+      })
+      .catch(er => {
+        console.log(er);
+      });
+    }},[update]
   );
 
 
@@ -83,7 +58,8 @@ const stp = state => {
   return {
       selected: state.selected,
       role: state.role,
-      data: state.data
+      data: state.data,
+      user_id: state.userid,
   }
 }
 

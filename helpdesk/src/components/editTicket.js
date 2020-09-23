@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NavLogin from './navLogin';
 import { connect } from 'react-redux';
 import { Form, Input, Label, FormGroup } from "reactstrap";
@@ -18,6 +18,10 @@ const EditTicketForm = (props) => {
         });
   };
 
+  useEffect(e => {
+      setFormState(props.selected)
+  },[props.editTrue]);
+
   const onChange = (e) => {
     e.preventDefault();
 
@@ -30,10 +34,12 @@ const EditTicketForm = (props) => {
     });
   };
 
+  if (props.editTrue === false) {return (<></>)}
+ else {
   return (
     <>
-      <Form onSubmit={onSubmit}>
-        <h3>Ticket Creation <button onClick={()=>{props.setEditing()}}>X</button></h3>
+      <Form onSubmit={onSubmit} className='edit'>
+        <h3>Ticket Creation <button onClick={()=>{props.setEditTrue(!props.editTrue)}}>X</button></h3>
         <FormGroup className="form-group">
           <Label htmlFor="title">Title</Label>
           <br />
@@ -75,12 +81,12 @@ const EditTicketForm = (props) => {
         <Input type="submit" value="Post Ticket" />
       </Form>
     </>
-  );
+  );}
 };
 
 const stp = state => {
   return {
-      
+    selected: state.selected
   }
 }
 

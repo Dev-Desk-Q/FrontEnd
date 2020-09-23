@@ -19,13 +19,14 @@ const NavLogin = props => {
 
         axios.post('https://areallyuniquename.herokuapp.com/api/users/login', activeUser)
         .then(res => {
-            props.loginUser(res,activeUser.username)
+            console.log(res);
+            props.loginUser(res);
             localStorage.setItem('token', res.data.token);
             props.info.history.push('/protected');
         })
         .catch(er => {
         
-            console.log(er, activeUser);
+            console.log(er,);
         });
     }
 

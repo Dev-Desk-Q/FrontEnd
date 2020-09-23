@@ -40,3 +40,32 @@
     left:-45%;
     width: 25%;
 }
+
+.type0 {
+    display: flex;
+    justify-content: space-between;
+    background-color: darkred;
+    width: 100%;
+    height: 10%;
+}
+
+.type1 {
+    display: flex;
+    justify-content: space-around;
+    background-color: darkgreen;
+    width: 100%;
+    height: 10%;
+}
+
+.edit {
+    display: none;
+    background-color: #ff952b;
+    color: #383634;
+}
+
+.editsee {
+    display: inline;
+    position: absolute;
+    top: 25%;
+    left:55%;
+}

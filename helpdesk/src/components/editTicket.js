@@ -4,28 +4,18 @@ import { connect } from 'react-redux';
 import { Form, Input, Label, FormGroup } from "reactstrap";
 import { axiosWithAuth } from '../utils/axiosAuth';
 
-const TicketCreationForm = (props) => {
-  const [formState, setFormState] = useState({
-    assigned: 0,
-    assigned_to: null,
-    category: "",
-    completed: 0,
-    description: " ",
-    id: 0,
-    title: "",
-    tried: "",
-    user_id: props.user_id
-  });
+const EditTicketForm = (props) => {
+  const [formState, setFormState] = useState(props.selected);
 
   const onSubmit = (e) => {
     e.preventDefault();
-    axiosWithAuth().post('/tickets', {...formState, id: Date.now()})
-    .then(res => {
-      alert('ticket submited');
-    })
-    .catch(er => {
-      console.log(er);
-    })
+    axiosWithAuth().put(`/tickets/${props.selected.id}`, {...formState})
+        .then(() => {
+            props.setUpdate(!props.update);
+        })
+        .catch(er => {
+            console.log(er);
+        });
   };
 
   const onChange = (e) => {
@@ -42,13 +32,12 @@ const TicketCreationForm = (props) => {
 
   return (
     <>
-      <NavLogin props={props} />
       <Form onSubmit={onSubmit}>
-        <h3>Ticket Creation</h3>
+        <h3>Ticket Creation <button onClick={()=>{props.setEditing()}}>X</button></h3>
         <FormGroup className="form-group">
           <Label htmlFor="title">Title</Label>
           <br />
-          <Input onChange={onChange} name="title" type="text" />
+          <Input onChange={onChange} name="title" type="text" value={formState.title} />
         </FormGroup>
         <FormGroup className="form-group">
           <Label htmlFor="description">Description</Label>
@@ -59,6 +48,7 @@ const TicketCreationForm = (props) => {
             type="textarea"
             onChange={onChange}
             name="description"
+            value={formState.description}
           />
         </FormGroup>
         <FormGroup>
@@ -70,12 +60,13 @@ const TicketCreationForm = (props) => {
             cols="50"
             type="textarea"
             name="tried"
+            value={formState.tried}
           />
         </FormGroup>
         <FormGroup>
           <Label htmlFor="category">Category</Label>
           <br />
-          <Input onChange={onChange} type="select" name="category">
+          <Input onChange={onChange} type="select" name="category" value={formState.category}>
             <option value="Network">option1</option>
             <option value="Account">option2</option>
             <option value="Misc">option3</option>
@@ -89,10 +80,10 @@ const TicketCreationForm = (props) => {
 
 const stp = state => {
   return {
-      user_id: state.userid
+      
   }
 }
 
 const dtp = { }
 
-export default connect(stp,dtp)(TicketCreationForm);
+export default connect(stp,dtp)(EditTicketForm);

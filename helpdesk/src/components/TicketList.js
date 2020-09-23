@@ -54,8 +54,8 @@ const TicketList = (props) => {
     if (props.role === 'helper'){
       axiosWithAuth().get('/tickets')
       .then(res => {
-        console.log(res);
         props.setTickets(res);
+        console.log(res);
       })
       .catch(er => {
         console.log(er);
@@ -80,7 +80,7 @@ const TicketList = (props) => {
           ))}
         </div>
         <div className='selectedTicket'>
-            <ActiveTicket selected={props.selected}/>
+            <ActiveTicket selected={props.selected} role={props.role} update={update} setUpdate={setUpdate}/>
         </div>
       </div>
     </>

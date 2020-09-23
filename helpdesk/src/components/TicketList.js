@@ -41,13 +41,6 @@ const TicketList = (props) => {
     },
   ]}
 
-  const getUpdate = e => {
-    setUpdate(!update);
-  }
-
-
-
-
  
   useEffect(e => {
     console.log(props.role);
@@ -72,7 +65,6 @@ const TicketList = (props) => {
     <NavLogin info={props} />
       <div className='ticket-cont'>
         <div className='tickets'>
-          <button onClick={e => {getUpdate();}} className='refresh'>refresh tickets</button>
           {props.data.map((ticket, index) => (
             <div className='tick' onClick={e => {props.selectItem(ticket)}}>
               <Ticket ticket={ticket} key={ticket.id} />

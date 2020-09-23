@@ -58,12 +58,8 @@
 }
 
 .edit {
-    display: none;
     background-color: #ff952b;
     color: #383634;
-}
-
-.editsee {
     display: inline;
     position: absolute;
     top: 25%;

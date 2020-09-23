@@ -8,14 +8,8 @@ const ActiveTicket = (props) => {
     const [isDisabled, setIsDisabled] = useState(true);
     const {title, assigned, assigned_to,  description, category, completed, tried, id} = props.selected;
     const classname = `type${completed}`;
+    const [editTrue, setEditTrue] = useState(false);
 
-    function setEditing() {
-        let element = document.getElementById("editForm");
-        element.classList.toggle("editsee");
-    }
-
-    
-    
 
     useEffect(e => {if (props.role === 'helper'){
         setIsDisabled(false);
@@ -49,7 +43,7 @@ const ActiveTicket = (props) => {
     return(
         <div>
             <div>
-                <h2 className='highlight'>{title} <button onClick={() => {setEditing()}}>edit</button></h2>
+                <h2 className='highlight'>{title} <button onClick={() => {setEditTrue(!editTrue)}}>edit</button></h2>
                 <p>User: {assigned}, Helper: {assigned_to}</p>
                 <p>{category}</p>
             </div>
@@ -62,8 +56,8 @@ const ActiveTicket = (props) => {
                 <p>status</p>
                 <button disabled={isDisabled} onClick={e => {deleteTicket()}}>delete</button>
             </div>
-            <section className='edit' id='editForm'>
-                <EditTicketForm selected={props.selected} update={props.update} setUpdate={props.setUpdate} setEditing={setEditing}/>
+            <section >
+                <EditTicketForm update={props.update} setUpdate={props.setUpdate} editTrue={editTrue} setEditTrue={setEditTrue} />
             </section>
         </div>
     )}

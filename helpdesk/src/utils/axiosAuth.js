@@ -5,6 +5,8 @@ export const axiosWithAuth = () => {
 
     return axios.create({
         baseURL: 'https://areallyuniquename.herokuapp.com/api',
-        Authorization: token
+        headers: {
+            Authorization: token
+          }
     });
 }

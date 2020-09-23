@@ -1,52 +1,100 @@
-import React, { useEffect } from "react";
-import NavLogin from './navLogin';
+import NavLogin from "./navLogin";
+import Ticket from "../components/Ticket";
+import React, { useEffect, useState } from "react";
 import {axiosWithAuth} from '../utils/axiosAuth';
 import {connect} from 'react-redux';
-import {setTickets} from '../redux/hdAction';
+import {setTickets, selectItem} from '../redux/hdAction';
+import './ticketlist.css'
+import ActiveTicket from './selectedTicket';
+
 
 const TicketList = (props) => {
-  const dummyData = [
-    { title: "Testing Title 1", description: "testing description 1" },
-    { title: "Testing Title 2", description: "testing description 2" },
-    { title: "Testing Title 3", description: "testing description 3" },
-    { title: "Testing Title 4", description: "testing description 4" },
-  ];
+  const [update, setUpdate] = useState(false);
+  const testres = {
+    data: [
+    { 
+      id: 1,
+      title: "Title 1 from student",
+      description: "Testing Description 1",
+      category: "Testing Category",
+      completed: false,
+      assigned: "Testing Student",
+      assigned_to: "Testing Helper",
+    },
+    {
+      id: 2,
+      title: "Title 2 from student",
+      description: "Testing Description 2",
+      category: "Testing Category 2",
+      completed: true,
+      assigned: "Testing Student",
+      assigned_to: "Testing Helper",
+    },
+    {
+      id: 3,
+      title: "Title 3 from student",
+      description: "Testing Description 3",
+      category: "Testing Category 3",
+      completed: false,
+      assigned: "Testing Student",
+      assigned_to: "Testing Helper",
+    },
+  ]}
 
+  const getUpdate = e => {
+    setUpdate(!update);
+  }
+
+
+
+
+ 
   useEffect(e => {
-    axiosWithAuth().get('/tickets')
-    .then(res => {
-      props.setTickets(res);
-      console.log(res);
-    })
-    .catch(er => {
-      console.log(er);
-    });
-  });
+    console.log(props.role);
+    if (props.role === 'helper'){
+      axiosWithAuth().get('/tickets')
+      .then(res => {
+        props.setTickets(res);
+        console.log(res);
+      })
+      .catch(er => {
+        console.log(er);
+      });
+    }
+    else {
+      props.setTickets(testres);}
+    },[update]
+  );
+
 
   return (
     <>
-      <NavLogin info={props}/>
-      {dummyData.map(({ title, description }, index) => (
-        <article key={index}>
-          <header>
-            <h2>{title}</h2>
-          </header>
-          <main>
-            <p>{description}</p>
-          </main>
-        </article>
-      ))}
+    <NavLogin info={props} />
+      <div className='ticket-cont'>
+        <div className='tickets'>
+          <button onClick={e => {getUpdate();}} className='refresh'>refresh tickets</button>
+          {props.data.map((ticket, index) => (
+            <div className='tick' onClick={e => {props.selectItem(ticket)}}>
+              <Ticket ticket={ticket} key={ticket.id} />
+            </div>
+          ))}
+        </div>
+        <div className='selectedTicket'>
+            <ActiveTicket selected={props.selected} role={props.role} update={update} setUpdate={setUpdate}/>
+        </div>
+      </div>
     </>
   );
 };
 
 const stp = state => {
   return {
-      message: state.message,
-      login: state.login
+      selected: state.selected,
+      role: state.role,
+      data: state.data
   }
 }
 
-const dtp = {setTickets}
+const dtp = {setTickets, selectItem}
 
 export default connect(stp,dtp)(TicketList);

@@ -1,7 +1,7 @@
 
 
-export const loginUser = (res) => dispatch => {
-    dispatch({type: 'USER_LOGIN', payload: {message: res.data.message, role: res.data.role, userid: res.data.id }})
+export const loginUser = (res,username) => dispatch => {
+    dispatch({type: 'USER_LOGIN', payload: {message: res.data.message, role: res.data.role, userid: res.data.id, username: username }})
 }
 
 export const logoutUser = () => dispatch => {

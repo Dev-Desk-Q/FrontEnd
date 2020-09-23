@@ -20,7 +20,7 @@ const NavLogin = props => {
         axios.post('https://areallyuniquename.herokuapp.com/api/users/login', activeUser)
         .then(res => {
             console.log(res);
-            props.loginUser(res);
+            props.loginUser(res,activeUser.username);
             localStorage.setItem('token', res.data.token);
             props.info.history.push('/protected');
         })

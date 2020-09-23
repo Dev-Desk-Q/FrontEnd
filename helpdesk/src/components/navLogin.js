@@ -55,7 +55,7 @@ const NavLogin = props => {
     else if (props.login === true){
         return(
             <div className='navLogin'>
-                <h2>HelpDesk</h2>
+                <h2 className= 'navHelp'>HelpDesk</h2>
                 <nav>
                     <a href='https://jovial-yonath-73daa5.netlify.app'>Home</a>
                     <a href='https://jovial-yonath-73daa5.netlify.app/about.html'>Our Team</a>

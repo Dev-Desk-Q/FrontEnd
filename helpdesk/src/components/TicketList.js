@@ -24,7 +24,7 @@ const TicketList = (props) => {
       });
     }
     else {
-      axiosWithAuth().get(`/tickets/users/${props.user_id}`);
+      axiosWithAuth().get(`/tickets/users/${props.user_id}`)
       .then(res => {
         props.setTickets(res);
       })

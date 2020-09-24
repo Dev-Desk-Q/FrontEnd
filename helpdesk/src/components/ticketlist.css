@@ -53,10 +53,12 @@
 
 .type1 {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     background-color: darkgreen;
-    width: 100%;
+    width: auto;
     height: 10%;
+    margin-left: -2%;
+    margin-right: -2%;
 }
 
 .edit {
@@ -64,7 +66,7 @@
     color: #383634;
     display: inline;
     position: absolute;
-    top: 25%;
+    top: 15%;
     left:55%;
 }
  
@@ -94,7 +96,7 @@
 
 }
 
-h3 {
+.selectBox h3 {
     display: inline;
     color: #ff952b
 

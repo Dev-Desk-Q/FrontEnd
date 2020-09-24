@@ -76,9 +76,9 @@ const TicketCreationForm = (props) => {
           <Label htmlFor="category">Category</Label>
           <br />
           <Input onChange={onChange} type="select" name="category">
-            <option value="Network">option1</option>
-            <option value="Account">option2</option>
-            <option value="Misc">option3</option>
+            <option value="Network">Network</option>
+            <option value="Account">Account</option>
+            <option value="Misc">Mic</option>
           </Input>
         </FormGroup>
         <Input type="submit" value="Post Ticket" />

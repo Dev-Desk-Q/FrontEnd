@@ -12,7 +12,7 @@
     height: 100vh;
 }
 .selectedTicket {
-    width: 35%;
+    width: 40%;
     display: flex;
     justify-content: center;
     align-content: center;
@@ -45,16 +45,20 @@
     display: flex;
     justify-content: space-between;
     background-color: darkred;
-    width: 100%;
+    width: auto;
     height: 10%;
+    margin-left: -2%;
+    margin-right: -2%;
 }
 
 .type1 {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     background-color: darkgreen;
-    width: 100%;
+    width: auto;
     height: 10%;
+    margin-left: -2%;
+    margin-right: -2%;
 }
 
 .edit {
@@ -62,6 +66,51 @@
     color: #383634;
     display: inline;
     position: absolute;
-    top: 25%;
+    top: 15%;
     left:55%;
+}
+ 
+.selectBox {
+    margin-top: 1%;
+    border: 5px solid #383634;
+    width: 100%;
+    padding: 2%;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    justify-items: flex-start;
+    padding-bottom: 0%;
+    padding-top: 0%;
+}
+
+.selectTop {
+    display: flex;
+    width: 95%;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 3px solid #383634;
+}
+
+.selectDesc {
+    border-bottom: 3px solid #383634;
+
+}
+
+.selectBox h3 {
+    display: inline;
+    color: #ff952b
+
+}
+
+h3 + h3 {
+    border: red;
+}
+
+.selectTried {
+    min-height: 75px;
+    color: black;
+    background-color: white; 
+    text-align: left;
+    margin: 1%;
+    border: 3px solid #383634;
 }

@@ -6,17 +6,25 @@ import EditTicketForm from './editTicket'
 
 const ActiveTicket = (props) => {
     const [isDisabled, setIsDisabled] = useState(true);
-    const {title, assigned, assigned_to,  description, category, completed, tried, id} = props.selected;
+    const {title, assigned, description, category, completed, tried, id} = props.selected;
     const classname = `type${completed}`;
     const [editTrue, setEditTrue] = useState(false);
 
+    
+    useEffect(e => 
+        
+        {if (props.role === 'helper'){
+            setIsDisabled(false);
+        }
 
-    useEffect(e => {if (props.role === 'helper'){
-        setIsDisabled(false);
-    }},[]);
+    },[]);
 
-    const makeHelper = () => {
-        axiosWithAuth().put(`/tickets/${id}`, {assigned_to: props.user_id})
+    const claimIt = {assigned_to: props.user_id};
+    const completeIt = {completed: 1};
+    
+
+    const makeChange = (x) => {
+        axiosWithAuth().put(`/tickets/${id}`, x )
         .then(() => {
             props.setUpdate(!props.update);
         })
@@ -41,22 +49,28 @@ const ActiveTicket = (props) => {
     }
     else {
     return(
-        <div>
+        <div className='selectBox'>
             <div>
-                <h2 className='highlight'>{title} <button onClick={() => {setEditTrue(!editTrue)}}>edit</button></h2>
-                <p>User: {assigned}, Helper: {assigned_to}</p>
-                <p>{category}</p>
+                <header className='selectTop'>
+                    <button disabled={isDisabled} onClick={e => {makeChange(claimIt)}}>Claim</button>
+                    <button onClick={() => {setEditTrue(!editTrue)}}>edit</button>
+                    <h2 className='highlight'>{title}</h2>
+                    <p>User: {assigned}</p>
+                </header>
+                <h3>Category:</h3> <span>{category}</span>
             </div>
-            <div className='textbox'>
+            <div className='selectDesc'>
+                <h3>Description:</h3>
                 <p>{description}</p>
-                <p>Whats been tried:{tried}</p>
             </div>
+            <h3>Whats been tried:</h3>
+            <p className='selectTried'>{tried}</p>
             <div className={classname}>
-                <button disabled={isDisabled} onClick={e => {makeHelper()}}>Claim</button>
+                <button onClick={e => {makeChange(completeIt)}}>Complete Ticket</button>
                 <p>status</p>
                 <button disabled={isDisabled} onClick={e => {deleteTicket()}}>delete</button>
             </div>
-            <section >
+            <section > 
                 <EditTicketForm update={props.update} setUpdate={props.setUpdate} editTrue={editTrue} setEditTrue={setEditTrue} />
             </section>
         </div>

@@ -41,22 +41,27 @@ const ActiveTicket = (props) => {
     }
     else {
     return(
-        <div>
+        <div className='selectBox'>
             <div>
-                <h2 className='highlight'>{title} <button onClick={() => {setEditTrue(!editTrue)}}>edit</button></h2>
-                <p>User: {assigned}, Helper: {assigned_to}</p>
-                <p>{category}</p>
+                <header className='selectTop'>
+                    <button onClick={() => {setEditTrue(!editTrue)}}>edit</button>
+                    <h2 className='highlight'>{title}</h2>
+                    <p>User: {assigned}</p>
+                </header>
+                <h3>Category:</h3> <span>{category}</span>
             </div>
-            <div className='textbox'>
+            <div className='selectDesc'>
+                <h3>Description:</h3>
                 <p>{description}</p>
-                <p>Whats been tried:{tried}</p>
             </div>
+            <h3>Whats been tried:</h3>
+            <p className='selectTried'>{tried}</p>
             <div className={classname}>
                 <button disabled={isDisabled} onClick={e => {makeHelper()}}>Claim</button>
                 <p>status</p>
                 <button disabled={isDisabled} onClick={e => {deleteTicket()}}>delete</button>
             </div>
-            <section >
+            <section > 
                 <EditTicketForm update={props.update} setUpdate={props.setUpdate} editTrue={editTrue} setEditTrue={setEditTrue} />
             </section>
         </div>

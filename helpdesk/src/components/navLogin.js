@@ -41,9 +41,9 @@ const NavLogin = props => {
         <div className='navLogin'>
             <h2 className= 'navHelp'>HelpDesk</h2>
             <nav>
-                <a href='https://jovial-yonath-73daa5.netlify.app'>Home</a>
-                <a href='https://jovial-yonath-73daa5.netlify.app/about.html'>Our Team</a>
-                <a href='https://jovial-yonath-73daa5.netlify.app/contact.html'>Contact Us</a>
+                <a href='https://dev-desk-q.netlify.app/'>Home</a>
+                <a href='https://dev-desk-q.netlify.app/about.html'>Our Team</a>
+                <a href='https://dev-desk-q.netlify.app/contact.html'>Contact Us</a>
             </nav>
             <form onSubmit={submitLogin}>
                 <input type='text' name='username' placeholder='Username' onChange={handleChange}/>
@@ -57,9 +57,9 @@ const NavLogin = props => {
             <div className='navLogin'>
                 <h2 className= 'navHelp'>HelpDesk</h2>
                 <nav>
-                    <a href='https://jovial-yonath-73daa5.netlify.app'>Home</a>
-                    <a href='https://jovial-yonath-73daa5.netlify.app/about.html'>Our Team</a>
-                    <a href='https://jovial-yonath-73daa5.netlify.app/contact.html'>Contact Us</a>
+                    <a href='https://dev-desk-q.netlify.app/'>Home</a>
+                    <a href='https://dev-desk-q.netlify.app/about.html'>Our Team</a>
+                    <a href='https://dev-desk-q.netlify.app/contact.htmlgit'>Contact Us</a>
                     <Link to='/protected'>View Tickets</Link>
                     <Link to='/protected/submittickets'>New Ticket</Link>
                 </nav>

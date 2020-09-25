@@ -6,7 +6,7 @@ import EditTicketForm from './editTicket'
 
 const ActiveTicket = (props) => {
     const [isDisabled, setIsDisabled] = useState(true);
-    const {title, assigned, description, category, completed, tried, id} = props.selected;
+    const {title, assigned_to, description, category, username, completed, tried, id} = props.selected;
     const classname = `type${completed}`;
     const [editTrue, setEditTrue] = useState(false);
 
@@ -19,7 +19,7 @@ const ActiveTicket = (props) => {
 
     },[]);
 
-    const claimIt = {assigned_to: props.user_id};
+    const claimIt = {assigned: true};
     const completeIt = {completed: 1};
     
 
@@ -55,9 +55,10 @@ const ActiveTicket = (props) => {
                     <button disabled={isDisabled} onClick={e => {makeChange(claimIt)}}>Claim</button>
                     <button onClick={() => {setEditTrue(!editTrue)}}>edit</button>
                     <h2 className='highlight'>{title}</h2>
-                    <p>User: {assigned}</p>
+                    <p>User: {username}</p>
                 </header>
                 <h3>Category:</h3> <span>{category}</span>
+                <p> {assigned_to}</p>
             </div>
             <div className='selectDesc'>
                 <h3>Description:</h3>

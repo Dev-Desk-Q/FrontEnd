@@ -20,7 +20,7 @@ const NavLogin = props => {
         axios.post('https://areallyuniquename.herokuapp.com/api/users/login', activeUser)
         .then(res => {
             console.log(res);
-            props.loginUser(res,activeUser.username);
+            props.loginUser(res);
             localStorage.setItem('token', res.data.token);
             props.info.history.push('/protected');
         })
@@ -41,9 +41,9 @@ const NavLogin = props => {
         <div className='navLogin'>
             <h2 className= 'navHelp'>HelpDesk</h2>
             <nav>
-                <a href='https://dev-desk-q.netlify.app/'>Home</a>
-                <a href='https://dev-desk-q.netlify.app/about.html'>Our Team</a>
-                <a href='https://dev-desk-q.netlify.app/contact.html'>Contact Us</a>
+                <a href='https://jovial-yonath-73daa5.netlify.app'>Home</a>
+                <a href='https://jovial-yonath-73daa5.netlify.app/about.html'>Our Team</a>
+                <a href='https://jovial-yonath-73daa5.netlify.app/contact.html'>Contact Us</a>
             </nav>
             <form onSubmit={submitLogin}>
                 <input type='text' name='username' placeholder='Username' onChange={handleChange}/>
@@ -55,11 +55,11 @@ const NavLogin = props => {
     else if (props.login === true){
         return(
             <div className='navLogin'>
-                <h2 className= 'navHelp'>HelpDesk</h2>
+                <h2>HelpDesk</h2>
                 <nav>
-                    <a href='https://dev-desk-q.netlify.app/'>Home</a>
-                    <a href='https://dev-desk-q.netlify.app/about.html'>Our Team</a>
-                    <a href='https://dev-desk-q.netlify.app/contact.htmlgit'>Contact Us</a>
+                    <a href='https://jovial-yonath-73daa5.netlify.app'>Home</a>
+                    <a href='https://jovial-yonath-73daa5.netlify.app/about.html'>Our Team</a>
+                    <a href='https://jovial-yonath-73daa5.netlify.app/contact.html'>Contact Us</a>
                     <Link to='/protected'>View Tickets</Link>
                     <Link to='/protected/submittickets'>New Ticket</Link>
                 </nav>

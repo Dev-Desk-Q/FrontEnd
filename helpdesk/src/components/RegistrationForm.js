@@ -9,7 +9,6 @@ const RegistrationForm = (props) => {
   const [formState, setFormState] = useState({
     username: "",
     password: "",
-    confirmPassword: "",
     role: "",
   });
 
@@ -22,13 +21,8 @@ const RegistrationForm = (props) => {
     setFormState({ ...formState, [targetName]: targetValue });
   };
 
-    const { password, confirmPassword } = formState;
 
     // Password Validation
-    if (password !== confirmPassword) {
-      alert("Passwords must match!");
-      return null;
-    }
     
 
   const onSubmit = (e) => {
@@ -68,18 +62,7 @@ const RegistrationForm = (props) => {
             />
             <br />
           </FormGroup>
-          <FormGroup className="form-group">
-            <Label htmlFor="confirmPassword">Confirm Password</Label>
-            <br />
-            <Input
-              onChange={onChange}
-              name="confirmPassword"
-              type="password"
-              minLength="6"
-              required
-            />
-            <br />
-          </FormGroup>
+         
           <FormGroup className="form-group">
             <Label htmlFor="role">Role</Label>
             <br />

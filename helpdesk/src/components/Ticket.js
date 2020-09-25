@@ -4,9 +4,7 @@ const Ticket = ({ticket}) => {
 
   const {
     title,
-    description,
-    category,
-    completed,
+    username,
     assigned,
     assigned_to,
   } = ticket;
@@ -17,7 +15,7 @@ const Ticket = ({ticket}) => {
         <h3>{title}</h3>
       </header>
       <div>
-      <p>user:{assigned} - helper:{assigned_to}</p>
+      <p>user:{username} - helper:{assigned_to}</p>
       </div>
     </section>
   );

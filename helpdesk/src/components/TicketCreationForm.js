@@ -14,7 +14,8 @@ const TicketCreationForm = (props) => {
     id: 0,
     title: "",
     tried: "",
-    user_id: props.user_id
+    user_id: props.user_id,
+    username: props.username,
   });
 
   const onSubmit = (e) => {
@@ -89,7 +90,8 @@ const TicketCreationForm = (props) => {
 
 const stp = state => {
   return {
-      user_id: state.userid
+      user_id: state.userid,
+      username: state.username
   }
 }
 

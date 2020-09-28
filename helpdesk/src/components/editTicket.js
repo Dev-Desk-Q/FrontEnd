@@ -13,6 +13,7 @@ const EditTicketForm = (props) => {
     axiosWithAuth().put(`/tickets/${props.selected.id}`, {...formState})
         .then(() => {
             props.setUpdate(!props.update);
+            props.setUpdateThis(!props.updateThis);
             props.setEditTrue(!props.editTrue);
         })
         .catch(er => {

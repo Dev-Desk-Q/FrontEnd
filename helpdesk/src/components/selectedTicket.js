@@ -5,6 +5,7 @@ import { axiosWithAuth } from '../utils/axiosAuth';
 import EditTicketForm from './editTicket'
 
 const ActiveTicket = (props) => {
+    const [updateThis, setUpdateThis] = useState(false);
     const [isDisabled, setIsDisabled] = useState(true);
     const {title, assigned_to, description, category, username, completed, tried, id} = props.selected;
     const classname = `type${completed}`;
@@ -27,6 +28,7 @@ const ActiveTicket = (props) => {
         axiosWithAuth().put(`/tickets/${id}`, x )
         .then(() => {
             props.setUpdate(!props.update);
+           setUpdateThis(!updateThis);
         })
         .catch(er => {
             console.log(er);
@@ -72,7 +74,11 @@ const ActiveTicket = (props) => {
                 <button disabled={isDisabled} onClick={e => {deleteTicket()}}>delete</button>
             </div>
             <section > 
-                <EditTicketForm update={props.update} setUpdate={props.setUpdate} editTrue={editTrue} setEditTrue={setEditTrue} />
+                <EditTicketForm update={props.update} setUpdate={props.setUpdate} editTrue={editTrue} setEditTrue={setEditTrue}
+                  setEdit
+                  updateThis={updateThis}
+                  setUpdateThis={updateThis}
+                />
             </section>
         </div>
     )}

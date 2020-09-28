@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import NavLogin from './navLogin';
 import { connect } from 'react-redux';
 import { Form, Input, Label, FormGroup } from "reactstrap";
+import {selectItem} from '../redux/hdAction';
 import { axiosWithAuth } from '../utils/axiosAuth';
 
 const EditTicketForm = (props) => {
@@ -9,11 +10,11 @@ const EditTicketForm = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    props.selectItem(formState);
     delete formState.username;
     axiosWithAuth().put(`/tickets/${props.selected.id}`, {...formState})
         .then(() => {
             props.setUpdate(!props.update);
-            props.setUpdateThis(!props.updateThis);
             props.setEditTrue(!props.editTrue);
         })
         .catch(er => {
@@ -93,6 +94,6 @@ const stp = state => {
   }
 }
 
-const dtp = { }
+const dtp = { selectItem }
 
 export default connect(stp,dtp)(EditTicketForm);

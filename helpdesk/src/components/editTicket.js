@@ -9,6 +9,7 @@ const EditTicketForm = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    delete formState.username;
     axiosWithAuth().put(`/tickets/${props.selected.id}`, {...formState})
         .then(() => {
             props.setUpdate(!props.update);
